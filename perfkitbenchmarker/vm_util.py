@@ -322,6 +322,14 @@ def IssueCommand(cmd, force_info_log=False, suppress_warning=False,
   else:
     logging.debug(debug_text)
 
+  print("+++++++++++++++==")
+  print("+++++++++++++++==")
+  print(full_cmd)
+  print(stdout)
+  print(stderr)
+  print(process.returncode)
+  print("+++++++++++++++==")
+  print("+++++++++++++++==")
   return stdout, stderr, process.returncode
 
 

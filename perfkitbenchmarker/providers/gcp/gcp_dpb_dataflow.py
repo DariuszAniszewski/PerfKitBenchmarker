@@ -87,6 +87,10 @@ class GcpDpbDataflow(dpb_service.BaseDpbService):
           self.spec, classname, job_arguments)
       stdout, _, retcode = vm_util.IssueCommand(full_cmd, cwd=base_dir,
                                                 timeout=FLAGS.beam_it_timeout)
+      print("---------------------")
+      print(stdout)
+      print(retcode)
+      print("---------------------")
       assert retcode == 0, "Integration Test Failed."
       return
 
