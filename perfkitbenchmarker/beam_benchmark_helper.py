@@ -71,7 +71,7 @@ SUPPORTED_RUNNERS = [
     dpb_service.DATAFLOW,
 ]
 
-BEAM_REPO_LOCATION = 'https://github.com/lgajowy/beam.git'
+BEAM_REPO_LOCATION = 'https://github.com/szewi/beam.git'
 INSTALL_COMMAND_ARGS = ["clean", "install", "-DskipTests",
                         "-Dcheckstyle.skip=true"]
 
@@ -135,7 +135,7 @@ def InitializeBeamRepo(benchmark_spec):
         'clone',
         BEAM_REPO_LOCATION,
     ]
-    FLAGS.beam_version = 'jenkins-hifioit-test'
+    FLAGS.beam_version = 'hdfs-perkit'
     if FLAGS.beam_version:
       clone_command.append('--branch={}'.format(FLAGS.beam_version))
       clone_command.append('--single-branch')
