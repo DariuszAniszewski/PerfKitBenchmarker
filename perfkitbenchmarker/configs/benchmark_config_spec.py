@@ -874,6 +874,8 @@ class _ContainerClusterSpec(_VmGroupSpec):
 
   @classmethod
   def _ApplyFlags(cls, config_values, flag_values):
+    print("!!! ApplyFlags")
+    print(flag_values['container_cluster_cloud'])
     super(_ContainerClusterSpec, cls)._ApplyFlags(config_values, flag_values)
     if flag_values['container_cluster_cloud'].present:
       config_values['cloud'] = flag_values.container_cluster_cloud

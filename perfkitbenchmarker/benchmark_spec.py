@@ -42,6 +42,7 @@ from perfkitbenchmarker import stages
 from perfkitbenchmarker import static_virtual_machine as static_vm
 from perfkitbenchmarker import virtual_machine
 from perfkitbenchmarker import vm_util
+from perfkitbenchmarker.providers.gcp.google_container_engine import GkeCluster
 
 
 def PickleLock(lock):
@@ -373,7 +374,9 @@ class BenchmarkSpec(object):
     networks = [self.networks[key] for key in sorted(self.networks.iterkeys())]
     vm_util.RunThreaded(lambda net: net.Create(), networks)
 
-    print("!!! self.container_cluster " + self.container_cluster)
+    print("!!! self.container_cluster {}".format(self.container_cluster))
+    self.container_cluster = GkeCluster()
+    print("!!! faked GKECluster")
     if self.container_cluster:
       self.container_cluster.Create()
 
