@@ -290,6 +290,7 @@ def IssueCommand(cmd, force_info_log=False, suppress_warning=False,
 
   full_cmd = ' '.join(cmd)
   logging.info('Running: %s', full_cmd)
+  print("!!! " + full_cmd)
 
   shell_value = RunningOnWindows()
   with tempfile.TemporaryFile() as tf_out, tempfile.TemporaryFile() as tf_err:

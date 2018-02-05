@@ -65,7 +65,7 @@ class GkeCluster(container_service.KubernetesCluster):
       cmd = util.GcloudCommand(
           self, 'alpha', 'container', 'clusters', 'create', self.name,
           '--enable-kubernetes-alpha', '--cluster-version', '1.8.4-gke.1')
-
+      print("!!! GkeCluster._Create")
       cmd.flags['accelerator'] = (gce_virtual_machine.
                                   GenerateAcceleratorSpecString(self.gpu_type,
                                                                 self.gpu_count))
@@ -80,9 +80,11 @@ class GkeCluster(container_service.KubernetesCluster):
 
   def _PostCreate(self):
     """Acquire cluster authentication."""
+    print("!!! GkeCluster._PostCreate")
     cmd = util.GcloudCommand(
         self, 'container', 'clusters', 'get-credentials', self.name)
     env = self._GetRequiredGkeEnv()
+    print("!!! " + FLAGS.kubeconfig)
     env['KUBECONFIG'] = FLAGS.kubeconfig
     cmd.IssueRetryable(env=env)
 
