@@ -166,6 +166,7 @@ class BaseResource(object):
       pass
 
   def Create(self):
+    print("!!! BaseResource. Create")
     """Creates a resource and its dependencies."""
 
     # A more general solution would allow the retry interval to be set as a
