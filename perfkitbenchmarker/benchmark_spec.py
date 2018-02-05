@@ -375,8 +375,6 @@ class BenchmarkSpec(object):
     vm_util.RunThreaded(lambda net: net.Create(), networks)
 
     print("!!! self.container_cluster {}".format(self.container_cluster))
-    self.container_cluster = GkeCluster()
-    print("!!! faked GKECluster")
     if self.container_cluster:
       self.container_cluster.Create()
 
