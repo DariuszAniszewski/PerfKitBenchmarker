@@ -155,9 +155,13 @@ class BenchmarkSpec(object):
     """Create the container cluster."""
     print("!!! ConstructContainerCluster")
     print(self.config.container_cluster)
-    if self.config.container_cluster is None:
-      return
-    cloud = self.config.container_cluster.cloud
+    print("!!! Faking")
+    # self.config.container_cluster = "GCP"
+    #
+    # if self.config.container_cluster is None:
+    #   return
+    # cloud = self.config.container_cluster.cloud
+    cloud = "GCP"
     providers.LoadProvider(cloud)
     container_cluster_class = container_service.GetContainerClusterClass(cloud)
     self.container_cluster = container_cluster_class(
