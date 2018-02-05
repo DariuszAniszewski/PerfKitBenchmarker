@@ -359,6 +359,7 @@ class BenchmarkSpec(object):
     vm_util.RunParallelThreads(targets, len(targets))
 
   def Provision(self):
+    print("!!! BenchmarkSpec. Provision")
     """Prepares the VMs and networks necessary for the benchmark to run."""
     # Sort networks into a guaranteed order of creation based on dict key.
     # There is a finite limit on the number of threads that are created to
@@ -372,6 +373,7 @@ class BenchmarkSpec(object):
     networks = [self.networks[key] for key in sorted(self.networks.iterkeys())]
     vm_util.RunThreaded(lambda net: net.Create(), networks)
 
+    print("!!! self.container_cluster " + self.container_cluster)
     if self.container_cluster:
       self.container_cluster.Create()
 
