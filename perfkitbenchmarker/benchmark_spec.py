@@ -156,12 +156,23 @@ class BenchmarkSpec(object):
     print("!!! ConstructContainerCluster")
     print(self.config.container_cluster)
     print("!!! Faking")
-    # self.config.container_cluster = "GCP"
-    #
-    # if self.config.container_cluster is None:
-    #   return
-    # cloud = self.config.container_cluster.cloud
-    cloud = "GCP"
+    from perfkitbenchmarker.configs import benchmark_config_spec
+    self.config.container_cluster = benchmark_config_spec._ContainerClusterSpec(
+      'NAME', **{
+        'cloud': 'GCP',
+        'os_type': 'debian',
+        'vm_spec': {
+          'GCP': {
+            'machine_type': 'n1-standard-1',
+            'zone': 'us-central1-a'
+          },
+        },
+        'vm_count': 2,
+      })
+
+    if self.config.container_cluster is None:
+      return
+    cloud = self.config.container_cluster.cloud
     providers.LoadProvider(cloud)
     container_cluster_class = container_service.GetContainerClusterClass(cloud)
     self.container_cluster = container_cluster_class(
