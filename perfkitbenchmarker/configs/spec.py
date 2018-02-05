@@ -65,6 +65,8 @@ class BaseSpec(object):
     """
     if not self._decoders:
       self._InitDecoders()
+    for val in flag_values:
+      print(val)
     if flag_values:
       self._ApplyFlags(kwargs, flag_values)
     missing_options = self._required_options.difference(kwargs)
