@@ -153,6 +153,8 @@ class BenchmarkSpec(object):
 
   def ConstructContainerCluster(self):
     """Create the container cluster."""
+    print("!!! ConstructContainerCluster")
+    print(self.config.container_cluster)
     if self.config.container_cluster is None:
       return
     cloud = self.config.container_cluster.cloud
