@@ -157,7 +157,11 @@ def RetrieveLoadBalancerIp(argDescriptor):
   import time
   while True:
     try:
-      conn = psycopg2.connect("dbname='postgres' user='postgres' host='{}' password='uuinkks'".format(ip))
+      logging.info("Trying to connect to Postgres at {}".format(ip))
+      conn = psycopg2.connect(
+        "dbname='postgres' user='postgres' host='{}' password='uuinkks'".format(ip),
+        connect_timeout=10
+      )
       logging.info("Connected to Postgres at {}".format(ip))
       break
     except:
