@@ -129,11 +129,12 @@ def InitializeBeamRepo(benchmark_spec):
     raise NotImplementedError('Unsupported Runner')
 
   vm_util.GenTempDir()
+  FLAGS.beam_version = "jdbc-troubleshooting"
   if FLAGS.beam_location is None:
     clone_command = [
         FLAGS.git_binary,
         'clone',
-        BEAM_REPO_LOCATION,
+        'https://github.com/lgajowy/beam.git',
     ]
     if FLAGS.beam_version:
       clone_command.append('--branch={}'.format(FLAGS.beam_version))

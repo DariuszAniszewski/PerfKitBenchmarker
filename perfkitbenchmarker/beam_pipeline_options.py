@@ -152,4 +152,15 @@ def RetrieveLoadBalancerIp(argDescriptor):
   if len(ip) == 0:
     raise "Could not retrieve LoadBalancer IP address"
   logging.info("Using LoadBalancer IP Address: " + ip)
+
+  import psycopg2
+  import time
+  while True:
+    try:
+      conn = psycopg2.connect("dbname='postgres' user='postgres' host='{}' password='uuinkks'".format(ip))
+      logging.info("Connected to Postgres at {}".format(ip))
+      break
+    except:
+      logging.info("Failed to connect to Postgres at {}".format(ip))
+      time.sleep(5)
   return ip
